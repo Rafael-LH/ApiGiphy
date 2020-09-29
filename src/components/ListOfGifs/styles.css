@@ -3,15 +3,19 @@
 }
 
 .ListOfGifs {
-  column-count: var(--results-columns);
-  column-gap: .5em;
+  display: grid;
   min-height: 100vh;
+  /* el auto-fit lo que hace es rellenar el espacio sobrante de las comulnas y para que
+  esto funcione de buena manera llamamos al metodo minmax que le pasamos el minimos y despues el maximo
+  que el maximo sera una fraccion  */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* debemos utilizar "gap" porque "grid-gap" ya esta quedando deprecate */
+  gap: 0px 16px;
+  align-items: center;
+  grid-template-rows: masonry;
 }
 
 .ListOfGifs-item {
-  -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
-  page-break-inside: avoid; /* Firefox */
-  break-inside: avoid; /* IE 10+ */
   background-color: #eee;
   display: inline-block;
   width: 100%;
@@ -25,6 +29,6 @@
 
 @media (min-width: 800px) {
   :root {
-    --results-columns: 4;
+    --results-columns: 4; 
   }
 }
