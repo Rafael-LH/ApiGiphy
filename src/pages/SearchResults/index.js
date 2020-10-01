@@ -13,19 +13,17 @@ export default function SearchResults({ params }) {
     externalRef: loading ? null : externalRef,
     once: false,
   })
-  const handleNextPage = () => console.log('next page');
 
   // el useCallback recibe una dependencia
   // use callback retorna una funcion
   const debounceHandleNextPage = useCallback(debounce(
-    () => setPage(prevPage => prevPage + 1), 500
+    () => setPage(prevPage => prevPage + 1), 300
   ), [])
 
   useEffect(() => {
-    console.log(isNearScreen)
     if (isNearScreen) debounceHandleNextPage()
   }, [debounceHandleNextPage, isNearScreen]) // dependencia de nuestro efecto
-
+  console.log(loading);
   return <>
     {loading
       ? <Spinner />
